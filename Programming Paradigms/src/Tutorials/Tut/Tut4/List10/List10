@@ -1,0 +1,45 @@
+TASK 1:
+ Supposing we have declared the classes Animal, Tutorials.Tut.Tut3.List8.Dog and Cat as in the document, the code above will generate an error
+because:
+
+ If we create a val 'dogSeq' as a Sequence[Tutorials.Tut.Tut3.List8.Dog] we can make a new val 'animalSeq' equal to 'dogSeq':
+>val dogSeq = new Sequence[Tutorials.Tut.Tut3.List8.Dog]
+>val animalSeq = dogSeq
+ This is correct. But if we have another val 'catSeq' and we do something like this:
+>val catSeq = animalSeq
+ It is not correct. We are telling the compiler that a Sequence of Tutorials.Tut.Tut3.List8.Dog contains now Cat.
+
+
+TASK 2:
+import scala.collection.mutable
+
+def copy[A] (collection: mutable.Set[A]):mutable.Set[A] = {
+  collection.clone()
+}
+val set = mutable.Set(1,2,3)
+val setCopy = copy(set)
+set.remove(1)
+set
+setCopy
+
+
+TASK 3:
+In Java, Arrays ara covariant. An explanation could be the next:
+
+ If we treat arrays as invariant then some methods such as Equals would not work. This is because while writing the
+ method we would only be able to compare arrays of the same type. Fortunately, as arrays in Java are covariant, the
+ method Equals written as:
+
+ boolean equalArrays(Object[] a1, Object[] a2);
+
+ would compare the two different arrays and not only they are of type Object[]. We can compare String, Int, etc as
+ they are subtypes of Object.
+
+
+
+
+TASK 4:
+Collections in Java are invariant, they do not support covariant or contravariant substitutions.
+
+ A good explanation for this is the task 1 of this list. To sump up, we cannot guarantee what type of elements
+ the Collection originally constructed for.
